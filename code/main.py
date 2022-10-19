@@ -83,8 +83,13 @@ def get_art_with_code(uri, sp, text):
     myFont = ImageFont.truetype('code/arial.ttf', 65)
     
     novo = textwrap.wrap(text, width=30)
+    exist_count = novo.count(15)
+
     I1.text((227, 1728), novo[0],font=myFont, fill=(255, 255, 255))
-    I1.text((227, 1852), novo[1],font=myFont, fill=(255, 255, 255))
+    if exist_count > 1:
+        I1.text((227, 1852), novo[1],font=myFont, fill=(255, 255, 255))
+    else:
+        pass
 
     return music
 
