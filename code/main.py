@@ -64,7 +64,7 @@ def get_art_with_code(uri, sp, text):
 
 
     album_code = Image.open(urlopen(url))
-    music = Image.open("/content/12.png")
+    music = Image.open("code/12.png")
     # merge images
     final_height = album_code.size[1] + cover_size
     im = Image.new(mode="RGB", size=(cover_size, final_height))
