@@ -5,12 +5,10 @@ import spotipy
 from spotipy.exceptions import SpotifyException
 from spotipy.oauth2 import SpotifyClientCredentials
 from spotipy.oauth2 import SpotifyOAuth
-import tqdm
 from PIL import ImageDraw
 from PIL import ImageFont
 import argparse
-import io
-from io import BytesIO
+
 
 import os
 import re
