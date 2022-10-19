@@ -8,6 +8,8 @@ from spotipy.oauth2 import SpotifyOAuth
 from PIL import ImageDraw
 from PIL import ImageFont
 import argparse
+import textwrap
+
 
 
 import os
@@ -23,7 +25,7 @@ def _rgb_to_hex(r,g,b):
 
 
 
-def get_art_with_code(uri, sp):
+def get_art_with_code(uri, sp, text):
     try:
         if re.match(r"spotify:track:[A-Za-z0-9]{22}", uri):
             test = sp.track(uri)
@@ -79,9 +81,8 @@ def get_art_with_code(uri, sp):
     I1 = ImageDraw.Draw(music)
 
     myFont = ImageFont.truetype('arial.ttf', 65)
-    import textwrap
-    texto = "Dil chahta hai koi mil gaya kolaveri in the world"
-    novo = textwrap.wrap(texto, width=30)
+    
+    novo = textwrap.wrap(text, width=30)
     I1.text((227, 1728), novo[0],font=myFont, fill=(255, 255, 255))
     I1.text((227, 1852), novo[1],font=myFont, fill=(255, 255, 255))
 
