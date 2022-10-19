@@ -80,7 +80,7 @@ def get_art_with_code(uri, sp, text):
 
     I1 = ImageDraw.Draw(music)
 
-    myFont = ImageFont.truetype('arial.ttf', 65)
+    myFont = ImageFont.truetype('code/arial.ttf', 65)
     
     novo = textwrap.wrap(text, width=30)
     I1.text((227, 1728), novo[0],font=myFont, fill=(255, 255, 255))
