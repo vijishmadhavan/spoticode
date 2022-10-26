@@ -149,7 +149,7 @@ def get_art_with_xls(path,sp):
       I1.text((227, 1728), song_nm[Upload_img.index(i)],font=myFont, fill=(255, 255, 255))
       m.save(f"spotify/{song_nm[Upload_img.index(i)]}.png")
   zipObj = ZipFile('spotify.zip', 'w')
-  for folderName, subfolders, filenames in os.walk('/content/spotify'):
+  for folderName, subfolders, filenames in os.walk('spotify'):
     for filename in filenames:
       filePath = os.path.join(folderName, filename)
       zipObj.write(filePath, os.path.basename(filePath))
