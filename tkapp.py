@@ -1,5 +1,5 @@
 import streamlit as st
-from code.main import *
+from code.mn import *
 import spotipy
 from spotipy.oauth2 import SpotifyClientCredentials
 from spotipy.oauth2 import SpotifyOAuth
