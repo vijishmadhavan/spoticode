@@ -170,3 +170,47 @@ def uri_from_url(search_url, sp):
         return search_url.replace("https://open.spotify.com/track/", "spotify:track:")
     else:
         return None
+def main():
+    parser = argparse.ArgumentParser(description="Get Spotify album art with code")
+    parser.add_argument(
+        "-q",
+        "--query",
+        type=str,
+        help="Search term to find album art",
+    )
+    parser.add_argument(
+        "-u",
+        "--url",
+        type=str,
+        help="URL of album art to get",
+    )
+    parser.add_argument(
+        "-o",
+        "--output",
+        type=str,
+        help="Output filename",
+    )
+    args = parser.parse_args()
+
+    if not args.query and not args.url:
+        parser.print_help()
+        return
+
+    if not args.output:
+        if args.query:
+            args.output = args.query + ".png"
+        elif args.url:
+            args.output = args.url.replace(":", "_") + ".png"
+
+    if args.query:
+        uri = uri_from_query(args.query, sp)
+    elif args.url:
+        uri = uri_from_url(args.url, sp)
+
+    if uri:
+        save_art_with_code(uri, sp, args.output)
+    else:
+        print("No results found")
+
+if __name__ == "__main__":
+    main()
