@@ -15,7 +15,7 @@ sp = spotipy.Spotify(
 uploaded_file = st.file_uploader("Choose a file")
 
 if uploaded_file is not None:
-    ZipfileDotZip = get_art_with_code(uploaded_file,sp)
+    ZipfileDotZip = get_art_with_xls(uploaded_file,sp)
 
     with open(ZipfileDotZip, "rb") as f:
         bytes = f.read()
