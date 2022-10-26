@@ -17,10 +17,10 @@ uploaded_file = st.file_uploader("Choose a file")
 if uploaded_file is not None:
     ZipfileDotZip = get_art_with_xls(uploaded_file,sp)
 
-with open(ZipfileDotZip, "rb") as f:
-    bytes = f.read()
-    b64 = base64.b64encode(bytes).decode()
-    href = f"<a href=\"data:file/zip;base64,{b64}\" download='{ZipfileDotZip}.zip'>\
-        Click last model weights\
-    </a>"
-st.sidebar.markdown(href, unsafe_allow_html=True)
+    with open(ZipfileDotZip, "rb") as f:
+        bytes = f.read()
+        b64 = base64.b64encode(bytes).decode()
+        href = f"<a href=\"data:file/zip;base64,{b64}\" download='{ZipfileDotZip}.zip'>\
+            Click last model weights\
+        </a>"
+    st.sidebar.markdown(href, unsafe_allow_html=True)
