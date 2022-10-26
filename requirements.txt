@@ -2,4 +2,4 @@ spotipy
 colorthief
 streamlit
 tqdm
-
+openpyxl
