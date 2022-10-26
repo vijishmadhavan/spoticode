@@ -6,6 +6,7 @@ from spotipy.oauth2 import SpotifyOAuth
 from PIL import Image
 from urllib.request import urlopen
 from io import BytesIO
+import base64
 
 
 from colorthief import ColorThief
