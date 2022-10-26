@@ -37,7 +37,7 @@ def readxl(path):
 
 
 
-def get_art_with_code(uri, sp,text):
+def get_art_with_codew(uri, sp,text):
     try:
         if re.match(r"spotify:track:[A-Za-z0-9]{22}", uri):
             test = sp.track(uri)
@@ -111,7 +111,7 @@ def uri_from_xls(path,sp):
   return URI
 
 
-def get_art_with_xls(path,sp):
+def get_art_with_code(path,sp):
   Upload_img,song_nm=readxl(path)
   uri = uri_from_xls(path,sp)
   cover_size = 640
