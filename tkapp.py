@@ -85,7 +85,7 @@ def get_art_with_code(uri, sp,text):
 
 
     album_code = Image.open(urlopen(url))
-    music = Image.open("/content/12.png")
+    music = Image.open("12.png")
     # merge images
     final_height = album_code.size[1] + cover_size
     im = Image.new(mode="RGB", size=(cover_size, final_height))
@@ -124,7 +124,7 @@ def get_art_with_xls(path,sp):
   uri = uri_from_xls(path,sp)
   cover_size = 640
   myFont = ImageFont.truetype('arial.ttf', 65)
-  music = Image.open("/content/12.png")
+  music = Image.open("12.png")
   try:
     shutil.rmtree("spotify", ignore_errors=False, onerror=None)
     os.remove("spotify.zip")
