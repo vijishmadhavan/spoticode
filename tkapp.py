@@ -3,14 +3,12 @@ from code.main import *
 import spotipy
 from spotipy.oauth2 import SpotifyClientCredentials
 from spotipy.oauth2 import SpotifyOAuth
-from PIL import Image
+from PIL import Image,ImageOps
 from urllib.request import urlopen
 from io import BytesIO
 import base64
-
-
+import aspose.words as aw
 from colorthief import ColorThief
-from PIL import Image
 from pyparsing import Opt
 import spotipy
 from spotipy.exceptions import SpotifyException
@@ -18,7 +16,6 @@ import tqdm
 from PIL import ImageDraw
 from PIL import ImageFont
 import textwrap
-import argparse
 import os
 import re
 from urllib.request import urlopen
@@ -42,7 +39,17 @@ def readxl(path):
   Upload_img = [x for x in Upload_img if x == x]
   song_nm = df["Song Name"].tolist()
   song_nm = [x for x in song_nm if x == x]
-  return Upload_img,song_nm
+  artist = df["Artist Name"].tolist()
+  artist = [x for x in artist if x == x]
+  return Upload_img,song_nm,artist
+
+def get_dominant_color(pil_img):
+    img = pil_img.copy()
+    img = img.convert("RGBA")
+    img = img.resize((1, 1), resample=0)
+    dominant_color = img.getpixel((0, 0))
+    return dominant_color
+get_dominant_color(cover_image)
 
 
 
@@ -113,7 +120,7 @@ def get_art_with_code(uri, sp,text):
 
 def uri_from_xls(path,sp):
   URI=[]
-  Upload_img,song_nm=readxl(path)
+  Upload_img,song_nm,artist=readxl(path)
   for i in song_nm:
     uri = uri_from_query(i,sp)
     URI.append(uri)
@@ -121,7 +128,7 @@ def uri_from_xls(path,sp):
 
 
 def get_art_with_xls(path,sp):
-  Upload_img,song_nm=readxl(path)
+  Upload_img,song_nm,artist=readxl(path)
   uri = uri_from_xls(path,sp)
   cover_size = 640
   myFont = ImageFont.truetype('arial.ttf', 65)
@@ -135,7 +142,8 @@ def get_art_with_xls(path,sp):
   for i in Upload_img:
     for k in uri:
       cover_image = Image.open(urlopen(i))
-      cover_image = cover_image.resize((1351, 1262))
+      with cover_image as im:
+         cover_image = ImageOps.pad(cover_image, (640, 640), color=(43,42,41))
       uri_call = k.replace(":", "%3A")
       url = f"https://www.spotifycodes.com/downloadCode.php?uri=png%2F2B2A29%2Fwhite%2F640%2F{uri_call}"
       album_code = Image.open(urlopen(url))
@@ -148,7 +156,15 @@ def get_art_with_xls(path,sp):
       Image.Image.paste(m, im, (225,116))
       I1 = ImageDraw.Draw(m)
       I1.text((227, 1728), song_nm[Upload_img.index(i)],font=myFont, fill=(255, 255, 255))
+      I1.text((233, 1864), artist[Upload_img.index(i)],font=myFont, fill=(255, 255, 255))
       m.save(f"spotify/{song_nm[Upload_img.index(i)]}.png")
+      doc = aw.Document()
+      builder = aw.DocumentBuilder(doc)
+      builder.insert_image(f"spotify/{song_nm[Upload_img.index(i)]}.png")
+      saveOptions = aw.saving.ImageSaveOptions(aw.SaveFormat.SVG)
+      doc.save(f"spotify/{song_nm[Upload_img.index(i)]}.svg", saveOptions)
+      #delete png
+      os.remove(f"spotify/{song_nm[Upload_img.index(i)]}.png")
   zipObj = ZipFile('spotify.zip', 'w')
   for folderName, subfolders, filenames in os.walk('spotify'):
     for filename in filenames:
