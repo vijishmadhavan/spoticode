@@ -3,3 +3,4 @@ colorthief
 streamlit
 tqdm
 openpyxl
+aspose-words
