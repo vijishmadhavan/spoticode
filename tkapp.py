@@ -49,7 +49,6 @@ def get_dominant_color(pil_img):
     img = img.resize((1, 1), resample=0)
     dominant_color = img.getpixel((0, 0))
     return dominant_color
-get_dominant_color(cover_image)
 
 
 
