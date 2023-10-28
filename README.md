@@ -1,12 +1,13 @@
-#Product Image Background Removal using DIS
+# Product Image Background Removal using DIS
 
 This project uses the DIS (Deep Image Segmentation) model to remove the background of product images. The background is then replaced with depth information from SDXL 1.0 based controlnet depth.
 
-#Requirements
+# Requirements
 
 PyTorch Version: 2.1.0 (compiled with CUDA 11.8)
 GPU: Tesla T4 (with 15,360 MiB of memory available)
-Installation
+
+# Installation
 To install the required packages, first make sure you have Python and pip installed. Then, run the following command:
 
 
@@ -15,7 +16,7 @@ pip install -r requirements.txt
 The requirements.txt file includes the following packages:
 
 
-#Usage
+# Usage
 Start the FastAPI server:
 uvicorn main:app --reload
 
