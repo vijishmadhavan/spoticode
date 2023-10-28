@@ -13,7 +13,6 @@ To install the required packages, first make sure you have Python and pip instal
 
 
 pip install -r requirements.txt
-The requirements.txt file includes the following packages:
 
 
 # Usage
