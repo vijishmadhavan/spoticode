@@ -1,6 +1,6 @@
-# Product Image Background Removal using DIS
+# Product Photography
 
-This project uses the DIS (Deep Image Segmentation) model to remove the background of product images. The background is then replaced with depth information from SDXL 1.0 based controlnet depth.
+This project uses the DIS (Deep Image Segmentation) model to remove the background of product images. The background is then replaced with depth information from SDXL 1.0 based on controlnet depth.
 
 # Requirements
 
